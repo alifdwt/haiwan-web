@@ -1,12 +1,12 @@
 export const Products: IProduct[] = [
   {
     id: 1,
-    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-    price: 109.95,
-    description:
-      "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
-    category: "men's clothing",
-    image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+    title: "Beauty Premium Catfood",
+    price: 28000,
+    description: "Semi-premium dry food, suitable for adult and kitten cats.",
+    category: "cat",
+    image:
+      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702613918/Haiwan/Commerce/alif-shop/beauty_cat_food_warykj.jpg",
     rating: {
       rate: 3.9,
       count: 120,
@@ -264,5 +264,36 @@ export const Products: IProduct[] = [
       rate: 3.6,
       count: 145,
     },
+  },
+];
+
+export const ImagesDummy = [
+  {
+    title: "Gambar-1",
+    link: "https://e0.pxfuel.com/wallpapers/264/195/desktop-wallpaper-digital-art-mountains-moon-forest-u-16-9-widescreen.jpg",
+  },
+  {
+    title: "Gambar-2",
+    link: "https://picsum.photos/960/540",
+  },
+  {
+    title: "Gambar-3",
+    link: "https://picsum.photos/960/540",
+  },
+  {
+    title: "Gambar-4",
+    link: "https://picsum.photos/960/540",
+  },
+  {
+    title: "Gambar-5",
+    link: "https://picsum.photos/960/540",
+  },
+  {
+    title: "Gambar-6",
+    link: "https://picsum.photos/960/540",
+  },
+  {
+    title: "Gambar-7",
+    link: "https://picsum.photos/960/540",
   },
 ];
