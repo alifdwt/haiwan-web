@@ -14,7 +14,7 @@ const NavigationMenuBottom = () => {
   return (
     <div className="bg-secondaryDark w-full">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <p className="self-center text-2xl font-extrabold whitespace-nowrap text-white">
+        <p className="text-2xl font-extrabold whitespace-nowrap text-white">
           Happy New Year!
         </p>
         <InputWithButton />

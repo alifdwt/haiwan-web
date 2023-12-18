@@ -10,6 +10,7 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Link from "next/link";
 
 const UserNav = () => {
   return (
@@ -23,13 +24,19 @@ const UserNav = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
-        <DropdownMenuLabel className="font-normal">
+        <DropdownMenuLabel className="font-normal flex flex-col gap-2">
           <div className="flex flex-col space-y-1">
             <p className="text-sm font-medium leading-none">shadcn</p>
             <p className="text-xs leading-none text-muted-foreground">
               m@example.com
             </p>
           </div>
+          <Link
+            href="/dashboard"
+            className="w-full bg-secondary text-center text-white rounded-md p-1.5 hover:bg-secondary/80"
+          >
+            Seller Dashboard
+          </Link>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>

@@ -106,9 +106,9 @@ export function NavigationMenuMiddle() {
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <PawPrint className="h-6 w-6" />
-          <span className="self-center text-2xl font-extrabold whitespace-nowrap dark:text-white">
+          <p className="self-center text-2xl font-extrabold whitespace-nowrap dark:text-white">
             Haiwan
-          </span>
+          </p>
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <NavigationMenuDemo />

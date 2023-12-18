@@ -59,17 +59,12 @@ const NewArrival = () => {
       >
         {images.map((image: any, index: number) => (
           <SwiperSlide key={index}>
-            {/* <img
-              src={image.src}
-              className="w-[1000px] h-[500px] object-cover"
-              alt=""
-            /> */}
             <Image
               src={image.src}
               alt={image.alt}
-              width={1000}
-              height={500}
-              className="w-[1000px] h-[500px] object-cover"
+              width={960}
+              height={540}
+              className="aspect-[21/9] object-cover"
             />
           </SwiperSlide>
         ))}
