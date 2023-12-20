@@ -1,271 +1,109 @@
 export const Products: IProduct[] = [
   {
-    id: 1,
-    title: "Beauty Premium Catfood",
-    price: 28000,
-    description: "Semi-premium dry food, suitable for adult and kitten cats.",
-    category: "cat",
-    image:
-      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702613918/Haiwan/Commerce/alif-shop/beauty_cat_food_warykj.jpg",
-    rating: {
-      rate: 3.9,
-      count: 120,
-    },
+      "_id": "65817b51c47cbb3732cd4c1f",
+      "creator": "658166462140324bb002e5fb",
+      "title": "Whiskas Makanan Kucing Basah Kaleng",
+      "price": 30000,
+      "description": "Dibuat dari ikan segar sangat disukai kucing dan bermanfaat untuk kucing. Kandungan gizi yang lengkap dan seimbang untuk memastikan pertumbuhan kucing yang sehat dan memberikan yang baik sistem kekebalan kucing.\n\nMengandung:\nTaurin\nBaik untuk pengelihatan yang sehat dan bersinar.\n\nMinya Omega 3 dan 6\nMinyak Mega 3 dan 6 yang batik untuk kesehatan kulit dan bulu kucing.\n\nVitamin E\nBaik untuk menguatkan sistem imun alami pada kucing\n\nKomposisi:\nTuna, Minyak Kacang Kedelai, tamion dan Mineral.\n\nKandungan Gizi:\nProtein 10%\nLemak Kasar 1.5%\nSerat Kasar 1%\nMoisture 8.5%\n\nKemasan kaleng 400g mudah dibuka dan ditutup kembali untuk menjaga kebersihan dan hegienis. Dapat disimpan dalam lemari es.\n\nCantumkan Varian ketika Order :\n1. Tuna\n2. Ocean",
+      "category": "Wet Food",
+      "imageData": [
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702983009/Haiwan/Commerce/alif-shop/whiskas-kaleng/whiskas-2_sbzgzw.jpg",
+              "_id": "65817b51c47cbb3732cd4c20"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702983009/Haiwan/Commerce/alif-shop/whiskas-kaleng/whiskas-1_mjt0dk.jpg",
+              "_id": "65817b51c47cbb3732cd4c21"
+          }
+      ],
+      "createdAt": "2023-12-19T11:15:29.842Z",
+      "__v": 0
   },
   {
-    id: 2,
-    title: "Mens Casual Premium Slim Fit T-Shirts ",
-    price: 22.3,
-    description:
-      "Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.",
-    category: "men's clothing",
-    image:
-      "https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg",
-    rating: {
-      rate: 4.1,
-      count: 259,
-    },
+      "_id": "65817d12c47cbb3732cd4c31",
+      "creator": "658166462140324bb002e5fb",
+      "title": "Bolt Cat Food Makanan Kucing",
+      "price": 17000,
+      "description": "- Semua produk yang kita jual adalah Original langsung dari pabriknya\n- Untuk bolt donat, biasanya serbuknya (tidak menutupi kemungkinan juga bolt ikan ada serbuknya).  Tidak perlu khawatir, karena itu adalah bumbu makanan bolt nya, bukan karena hancur ya kaka2. Itu diperlukan utk menambah nafsu makan kucing kesayangan kk\n- Kalau ragu timbangannya, PASTIKAN menimbang dengan TIMBANGAN DIGITAL ya kk, bukan timbangan perasaan. Kita menggunakan timbangan digital merk CMOS dengan ketelitian 2 angka desinal di belakang koma, jadi PASTI PAS 👍\n\nBolt diformulasikan untuk memenuhi nutrisi standar Profil Nutrisi Makanan Kucing yang disahkan oleh AAFCO (Association of American Feed Control Officials).\n\nExpired panjang (Message untuk cek expired)\n\n- Highly digestible\n- For Healthy skin & coat\n- Appealing flavor\n\nGuaranteed Analysis:\nCrude Protein: Min 28%\nCrude Fat: Min 9%\nCrude Fiber: Max 4%\nMoisture: Max 10%",
+      "category": "Dry Food",
+      "imageData": [
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702965631/Haiwan/Commerce/alif-shop/bolt-makanan-kucing/bolt-4_hoemqw.jpg",
+              "_id": "65817d12c47cbb3732cd4c32"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702965631/Haiwan/Commerce/alif-shop/bolt-makanan-kucing/bolt-1_vsuyzb.jpg",
+              "_id": "65817d12c47cbb3732cd4c33"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702965631/Haiwan/Commerce/alif-shop/bolt-makanan-kucing/bolt-3_i8lzhv.jpg",
+              "_id": "65817d12c47cbb3732cd4c34"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702965631/Haiwan/Commerce/alif-shop/bolt-makanan-kucing/bolt-2_gp1agf.jpg",
+              "_id": "65817d12c47cbb3732cd4c35"
+          }
+      ],
+      "createdAt": "2023-12-19T11:22:58.028Z",
+      "__v": 0
   },
   {
-    id: 3,
-    title: "Mens Cotton Jacket",
-    price: 55.99,
-    description:
-      "great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.",
-    category: "men's clothing",
-    image: "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg",
-    rating: {
-      rate: 4.7,
-      count: 500,
-    },
+      "_id": "65817da5c47cbb3732cd4c48",
+      "creator": "658166462140324bb002e5fb",
+      "title": "Beauty Makanan Kucing Cat Food Adult & Kitten",
+      "price": 22000,
+      "description": "Keistimewaan Beauty Cat Premium:\n-Diformulasikan untuk adult & kitten\n- Menggunakan bahan baku natural yang nutrisi nya diformulasikan secara seimbang.\n-Mengandung serat Psyllium dan ekstrak Yucca Schidigera untuk mejaga kesehatan usus, sehingga dapat mengurangi bau dan meningatkan kualitas feses (padat dan kering)\n-diperkaya dengan sayuran dan serat alami sehingga dapat meningkatkan kemampuan dan kinerja usu untuk mengilangkan gumpalan bulu yang tertelan (anti hairbal)\n-diperkaya dengan probiotik yang mengandung 5 strain bakteri baik untuk mendukung keseimbangan mikroflora usus.\n-diperkaya dengan natural Enzyme untuk memelihara kesehatan saluran pencernaan.\n-kadar abu dalam pakan rendah dan redah magnesium yang diformulasikan secara sempurna untuk menjaga kesehatan saluran kencing.\n-ditambah dengan asam lenoleate untuk kesehatan ulit dan bulu yang lebih berbahaya.\n-diperkaya dengan Antioksidan dan Vitamin untuk membantu meningkatkan imunitas tubuh.\n-dilengakpi dengan Biotin dan Turine untuk meningkatkan kualitas penglihatan dan kesehatan mata.\n-dengan daya cecap tajam dan rasa yang special sehingga dapat merangsang nafsu makan.\n-diformulasikan secara khusus untuk kesehatan dan kebersihan gigi serta gusi",
+      "category": "Dry Food",
+      "imageData": [
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702623546/Haiwan/Commerce/alif-shop/beauty-premium-catfood/beauty_cat_food_aw4p2j.jpg",
+              "_id": "65817da5c47cbb3732cd4c49"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702623541/Haiwan/Commerce/alif-shop/beauty-premium-catfood/beauty1_wmrwei.jpg",
+              "_id": "65817da5c47cbb3732cd4c4a"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702623541/Haiwan/Commerce/alif-shop/beauty-premium-catfood/beauty-2_sjx4se.jpg",
+              "_id": "65817da5c47cbb3732cd4c4b"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702623541/Haiwan/Commerce/alif-shop/beauty-premium-catfood/beauty-3_qm1f4u.webp",
+              "_id": "65817da5c47cbb3732cd4c4c"
+          }
+      ],
+      "createdAt": "2023-12-19T11:25:25.398Z",
+      "__v": 0
   },
   {
-    id: 4,
-    title: "Mens Casual Slim Fit",
-    price: 15.99,
-    description:
-      "The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
-    category: "men's clothing",
-    image: "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-    rating: {
-      rate: 2.1,
-      count: 430,
-    },
-  },
-  {
-    id: 5,
-    title:
-      "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
-    price: 695,
-    description:
-      "From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean's pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.",
-    category: "jewelery",
-    image: "https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg",
-    rating: {
-      rate: 4.6,
-      count: 400,
-    },
-  },
-  {
-    id: 6,
-    title: "Solid Gold Petite Micropave ",
-    price: 168,
-    description:
-      "Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.",
-    category: "jewelery",
-    image: "https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg",
-    rating: {
-      rate: 3.9,
-      count: 70,
-    },
-  },
-  {
-    id: 7,
-    title: "White Gold Plated Princess",
-    price: 9.99,
-    description:
-      "Classic Created Wedding Engagement Solitaire Diamond Promise Ring for Her. Gifts to spoil your love more for Engagement, Wedding, Anniversary, Valentine's Day...",
-    category: "jewelery",
-    image: "https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg",
-    rating: {
-      rate: 3,
-      count: 400,
-    },
-  },
-  {
-    id: 8,
-    title: "Pierced Owl Rose Gold Plated Stainless Steel Double",
-    price: 10.99,
-    description:
-      "Rose Gold Plated Double Flared Tunnel Plug Earrings. Made of 316L Stainless Steel",
-    category: "jewelery",
-    image: "https://fakestoreapi.com/img/51UDEzMJVpL._AC_UL640_QL65_ML3_.jpg",
-    rating: {
-      rate: 1.9,
-      count: 100,
-    },
-  },
-  {
-    id: 9,
-    title: "WD 2TB Elements Portable External Hard Drive - USB 3.0 ",
-    price: 64,
-    description:
-      "USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user’s hardware configuration and operating system",
-    category: "electronics",
-    image: "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg",
-    rating: {
-      rate: 3.3,
-      count: 203,
-    },
-  },
-  {
-    id: 10,
-    title: "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
-    price: 109,
-    description:
-      "Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)",
-    category: "electronics",
-    image: "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg",
-    rating: {
-      rate: 2.9,
-      count: 470,
-    },
-  },
-  {
-    id: 11,
-    title:
-      "Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5",
-    price: 109,
-    description:
-      "3D NAND flash are applied to deliver high transfer speeds Remarkable transfer speeds that enable faster bootup and improved overall system performance. The advanced SLC Cache Technology allows performance boost and longer lifespan 7mm slim design suitable for Ultrabooks and Ultra-slim notebooks. Supports TRIM command, Garbage Collection technology, RAID, and ECC (Error Checking & Correction) to provide the optimized performance and enhanced reliability.",
-    category: "electronics",
-    image: "https://fakestoreapi.com/img/71kWymZ+c+L._AC_SX679_.jpg",
-    rating: {
-      rate: 4.8,
-      count: 319,
-    },
-  },
-  {
-    id: 12,
-    title:
-      "WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive",
-    price: 114,
-    description:
-      "Expand your PS4 gaming experience, Play anywhere Fast and easy, setup Sleek design with high capacity, 3-year manufacturer's limited warranty",
-    category: "electronics",
-    image: "https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg",
-    rating: {
-      rate: 4.8,
-      count: 400,
-    },
-  },
-  {
-    id: 13,
-    title: "Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin",
-    price: 599,
-    description:
-      "21. 5 inches Full HD (1920 x 1080) widescreen IPS display And Radeon free Sync technology. No compatibility for VESA Mount Refresh Rate: 75Hz - Using HDMI port Zero-frame design | ultra-thin | 4ms response time | IPS panel Aspect ratio - 16: 9. Color Supported - 16. 7 million colors. Brightness - 250 nit Tilt angle -5 degree to 15 degree. Horizontal viewing angle-178 degree. Vertical viewing angle-178 degree 75 hertz",
-    category: "electronics",
-    image: "https://fakestoreapi.com/img/81QpkIctqPL._AC_SX679_.jpg",
-    rating: {
-      rate: 2.9,
-      count: 250,
-    },
-  },
-  {
-    id: 14,
-    title:
-      "Samsung 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED ",
-    price: 999.99,
-    description:
-      "49 INCH SUPER ULTRAWIDE 32:9 CURVED GAMING MONITOR with dual 27 inch screen side by side QUANTUM DOT (QLED) TECHNOLOGY, HDR support and factory calibration provides stunningly realistic and accurate color and contrast 144HZ HIGH REFRESH RATE and 1ms ultra fast response time work to eliminate motion blur, ghosting, and reduce input lag",
-    category: "electronics",
-    image: "https://fakestoreapi.com/img/81Zt42ioCgL._AC_SX679_.jpg",
-    rating: {
-      rate: 2.2,
-      count: 140,
-    },
-  },
-  {
-    id: 15,
-    title: "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
-    price: 56.99,
-    description:
-      "Note:The Jackets is US standard size, Please choose size as your usual wear Material: 100% Polyester; Detachable Liner Fabric: Warm Fleece. Detachable Functional Liner: Skin Friendly, Lightweigt and Warm.Stand Collar Liner jacket, keep you warm in cold weather. Zippered Pockets: 2 Zippered Hand Pockets, 2 Zippered Pockets on Chest (enough to keep cards or keys)and 1 Hidden Pocket Inside.Zippered Hand Pockets and Hidden Pocket keep your things secure. Humanized Design: Adjustable and Detachable Hood and Adjustable cuff to prevent the wind and water,for a comfortable fit. 3 in 1 Detachable Design provide more convenience, you can separate the coat and inner as needed, or wear it together. It is suitable for different season and help you adapt to different climates",
-    category: "women's clothing",
-    image: "https://fakestoreapi.com/img/51Y5NI-I5jL._AC_UX679_.jpg",
-    rating: {
-      rate: 2.6,
-      count: 235,
-    },
-  },
-  {
-    id: 16,
-    title:
-      "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
-    price: 29.95,
-    description:
-      "100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON",
-    category: "women's clothing",
-    image: "https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg",
-    rating: {
-      rate: 2.9,
-      count: 340,
-    },
-  },
-  {
-    id: 17,
-    title: "Rain Jacket Women Windbreaker Striped Climbing Raincoats",
-    price: 39.99,
-    description:
-      "Lightweight perfet for trip or casual wear---Long sleeve with hooded, adjustable drawstring waist design. Button and zipper front closure raincoat, fully stripes Lined and The Raincoat has 2 side pockets are a good size to hold all kinds of things, it covers the hips, and the hood is generous but doesn't overdo it.Attached Cotton Lined Hood with Adjustable Drawstrings give it a real styled look.",
-    category: "women's clothing",
-    image: "https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg",
-    rating: {
-      rate: 3.8,
-      count: 679,
-    },
-  },
-  {
-    id: 18,
-    title: "MBJ Women's Solid Short Sleeve Boat Neck V ",
-    price: 9.85,
-    description:
-      "95% RAYON 5% SPANDEX, Made in USA or Imported, Do Not Bleach, Lightweight fabric with great stretch for comfort, Ribbed on sleeves and neckline / Double stitching on bottom hem",
-    category: "women's clothing",
-    image: "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
-    rating: {
-      rate: 4.7,
-      count: 130,
-    },
-  },
-  {
-    id: 19,
-    title: "Opna Women's Short Sleeve Moisture",
-    price: 7.95,
-    description:
-      "100% Polyester, Machine wash, 100% cationic polyester interlock, Machine Wash & Pre Shrunk for a Great Fit, Lightweight, roomy and highly breathable with moisture wicking fabric which helps to keep moisture away, Soft Lightweight Fabric with comfortable V-neck collar and a slimmer fit, delivers a sleek, more feminine silhouette and Added Comfort",
-    category: "women's clothing",
-    image: "https://fakestoreapi.com/img/51eg55uWmdL._AC_UX679_.jpg",
-    rating: {
-      rate: 4.5,
-      count: 146,
-    },
-  },
-  {
-    id: 20,
-    title: "DANVOUY Womens T Shirt Casual Cotton Short",
-    price: 12.99,
-    description:
-      "95%Cotton,5%Spandex, Features: Casual, Short Sleeve, Letter Print,V-Neck,Fashion Tees, The fabric is soft and has some stretch., Occasion: Casual/Office/Beach/School/Home/Street. Season: Spring,Summer,Autumn,Winter.",
-    category: "women's clothing",
-    image: "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
-    rating: {
-      rate: 3.6,
-      count: 145,
-    },
-  },
-];
+      "_id": "65817ec9c47cbb3732cd4c69",
+      "creator": "658166462140324bb002e5fb",
+      "title": "Excel Makanan Kucing Fresh",
+      "price": 20000,
+      "description": "Pilihan terbaik dari sang ahli untuk kebaikan nutrisi, kesehatan serta keindahan kulit dan bulu setiap hari.\n\nEXCEL Cat food adalah jajaran produk berkualitas tinggi menggunakan bahan baku impor dari Australia dan Amerika Utara yang 100% alami. Protein tinggi berasal dari daging ayam dan ikan asli, kaya akan taurine, omega 3 dan 6 serta mineral yang baik bagi tubuh; EXCEL CAT merupakan makanan yang bergizi dan lezat bagi kebutuhan kucing Anda, di setiap tahap kehidupannya.\n\nFormula secara khusus dibuat untuk meningkatkan fungsi daya tahan tubuh dan kesehatan pencernaan untuk memastikan bahwa kucing yang tinggal di lingkungan tropis  sekalipun mendapatkan manfaat terbaik bagi metabolisme, kesehatan kulit serta keindahan bulu yang optimal setiap hari.\n\nKerenyahan dibalut rasa tuna yang lezat.\n\nKombinasi khusus oleh dokter hewan yang terdiri dari serat tumbuhan alami untuk membantu mencegah pembentukan bola-bola rambut (hairball) di saluran pencernaan dan mengurangi bau kotoran.\n\nTerbuat dari bahan-bahan yang higienis, bersih dan alami dengan protein berkualitas dari daging ayam dan ikan\nKaya akan Omega-3 dari minyak ikan laut dan bahan mikro khusus untuk kulit sehat dan bulu yang mengkilap.",
+      "category": "Dry Food",
+      "imageData": [
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702985344/Haiwan/Commerce/alif-shop/excel-fresh-pack/excel-2_xqdidv.jpg",
+              "_id": "65817ec9c47cbb3732cd4c6a"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702985343/Haiwan/Commerce/alif-shop/excel-fresh-pack/excel-1_bkfkfx.jpg",
+              "_id": "65817ec9c47cbb3732cd4c6b"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702985343/Haiwan/Commerce/alif-shop/excel-fresh-pack/excel-3_hs4tcq.jpg",
+              "_id": "65817ec9c47cbb3732cd4c6c"
+          },
+          {
+              "image": "https://res.cloudinary.com/dxirtmo5t/image/upload/v1702985342/Haiwan/Commerce/alif-shop/excel-fresh-pack/excel-4_nngfx2.jpg",
+              "_id": "65817ec9c47cbb3732cd4c6d"
+          }
+      ],
+      "createdAt": "2023-12-19T11:30:17.165Z",
+      "__v": 0
+  }
+]
 
 export const ImagesDummy = [
   {
