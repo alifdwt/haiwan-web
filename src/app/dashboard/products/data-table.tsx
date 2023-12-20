@@ -1,18 +1,7 @@
 "use client";
 
+import FormDashboard from "@/components/dashboard/form";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import {
   Table,
   TableBody,
@@ -28,7 +17,7 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { FileEdit, Trash } from "lucide-react";
+import { Trash } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -47,39 +36,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div className="max-w-screen-xl mx-auto">
-      <Sheet>
-        <SheetTrigger asChild>
-          <Button>Add Product</Button>
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Add Product</SheetTitle>
-            <SheetDescription>
-              Add a new product to your inventory.
-            </SheetDescription>
-          </SheetHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="title" className="text-right">
-                Title
-              </Label>
-              <Input id="title" className="col-span-3" />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="price" className="text-right">
-                Price
-              </Label>
-              <Input id="price" type="number" className="col-span-3" />
-            </div>
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type="submit">Save Changes</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
+    <div className="mx-auto">
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -117,10 +74,13 @@ export function DataTable<TData, TValue>({
                   ))}
                   <TableCell>
                     <div className="flex gap-2">
-                      <Button variant="outline">
-                        <FileEdit className="w-4 h-4 mr-2" />
-                        Edit
-                      </Button>
+                      <FormDashboard
+                        type="Edit"
+                        post={row.original}
+                        setPost={() => {}}
+                        submitting={false}
+                        handleSubmit={() => {}}
+                      />
                       <Button variant="destructive">
                         <Trash className="w-4 h-4 mr-2" />
                         Delete

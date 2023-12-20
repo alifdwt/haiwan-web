@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import Footer from "@/components/layout/footer";
 import { usePathname } from "next/navigation";
 import { dashboardSidebarList } from "@/constants/sidebar";
+import Provider from "@/components/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex flex-col justify-between min-h-screen">
+        <Provider>
         {!disableNavbar.includes(pathname) && (
           <div>
             <Navbar />
@@ -42,6 +44,7 @@ export default function RootLayout({
           <main>{children}</main>
         </Suspense>
         {!disableNavbar.includes(pathname) && <Footer />}
+      </Provider>
       </body>
     </html>
   );

@@ -52,7 +52,7 @@ const DashboardSidebar = () => {
                               <span className="ml-3">{item.title}</span>
                             </div>
                           </AccordionTrigger>
-                          <AccordionContent className="ml-3">
+                          <AccordionContent className="ml-3 mt-2">
                             <ul className="space-y-2">
                               {item.pages?.map((page) => (
                                 <li key={page.title}>

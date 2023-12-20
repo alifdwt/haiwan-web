@@ -1,25 +1,53 @@
-import { Button } from "@/components/ui/button";
+"use client";
+
+import { useEffect, useState } from "react";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
+import FormDashboard, { ProductFormValues } from "@/components/dashboard/form";
+import { useSession } from "next-auth/react";
 
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/p", {
-    cache: "no-store",
-  });
+const ProductsDashboard = () => {
+  const { data: session }: any = useSession();
 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [fetching, setFetching] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  return res.json();
+  useEffect(() => {
+    const getProducts = async () => {
+      setFetching(true);
+      try {
+        const response = await fetch("/api/p");
+        const data = await response.json();
+        setProducts(data.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setFetching(false);
+      }
+    };
+    getProducts();
+  }, []);
+
+  const createProduct = async (data: ProductFormValues) => {
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/p/new", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({...data, userId: session?.user?.id}),
+      });
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setSubmitting(false);
+    }
 }
 
-const ProductsDashboard = async () => {
-  const products = await getData();
-
   return (
-    <div className="max-w-screen-xl mx-auto my-5 p-3">
+    <div className="my-5 p-4 sm:ml-64">
       <h1 className="text-3xl font-bold">Products Dashboard</h1>
       <p className="text-lg">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
@@ -30,7 +58,12 @@ const ProductsDashboard = async () => {
         expedita, sunt quos?
       </p>
       <div className="mx-auto py-10">
-        <DataTable columns={columns} data={products.data} />
+        <FormDashboard
+          type="Add"
+          onSubmit={createProduct}
+          submitting={submitting}
+        />
+        <DataTable columns={columns} data={products} />
       </div>
     </div>
   );

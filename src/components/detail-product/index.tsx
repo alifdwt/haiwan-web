@@ -11,6 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import ProductSwiper from "./product-swiper";
 
 type DetailProductPageProps = {
   params: {
@@ -19,7 +20,7 @@ type DetailProductPageProps = {
 };
 
 async function getData(id: string) {
-  const res = await fetch(`http://localhost:3000/api/p?id=${id}`, {
+  const res = await fetch(`http://localhost:3000/api/p/${id}`, {
     cache: "no-store",
   });
 
@@ -34,6 +35,8 @@ async function getData(id: string) {
 const DetailProductPage = async (props: DetailProductPageProps) => {
   const { params } = props;
   const Product = await getData(params.slug[2]);
+  const dummyStar = Math.floor(Math.random() * 5) + 1
+
   return (
     <div className="max-w-screen-xl mx-auto mb-5">
       <div className="w-full flex gap-2 my-4">
@@ -56,24 +59,18 @@ const DetailProductPage = async (props: DetailProductPageProps) => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_.75fr]">
         <div className="col-span-1 flex justify-center">
-          <Image
-            src={Product.data.image}
-            alt={Product.data.title}
-            width={100}
-            height={100}
-            className="w-96 h-96 object-contain"
-          />
+          <ProductSwiper images={Product.data.imageData.map((image: any) => image.image)} />
         </div>
         <div className="col-span-1 flex flex-col gap-4">
           <h1 className="text-3xl font-extrabold">{Product.data.title}</h1>
           <div className="flex gap-2">
-            <StarRating rating={Product.data.rating.rate} />
+            <StarRating rating={Product.data.rating ? Product.data.rating.rate : dummyStar} />
             <p className="text-sm font-medium">
-              {Product.data.rating.rate}{" "}
+              {Product.data.rating ? Product.data.rating.rate : dummyStar}{" "}
               <span className="text-secondary">/ 5</span>
             </p>
             <p className="text-sm text-secondaryDark">
-              {Product.data.rating.count} reviews
+              {Product.data.rating ? Product.data.rating.count : Math.floor(Math.random() * 500)} reviews
             </p>
           </div>
           <div className="flex gap-2 items-center">
@@ -84,11 +81,11 @@ const DetailProductPage = async (props: DetailProductPageProps) => {
               {ToRupiah(Product.data.price * 1.5)}
             </p>
           </div>
-          <p>{Product.data.description}</p>
+          <p className="text-sm whitespace-pre-line">{Product.data.description}</p>
           <div className="flex flex-col gap-2 justify-between">
             <Button className="w-full rounded-full">Buy Now</Button>
             <div className="flex gap-2 items-center">
-              <div className="flex gap-2 border w-[30%] p-2">
+              <div className="flex gap-2 border w-[30%]">
                 {/* <Button className="rounded-full bg-gray-200 h-5 w-5">-</Button> */}
                 <Input
                   type="number"

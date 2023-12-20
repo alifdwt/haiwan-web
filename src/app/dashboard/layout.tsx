@@ -9,8 +9,10 @@ export default function DashboardLayout({
   return (
     <div>
       <NavbarDashboard />
+      {/* <div className="border-b border-gray-200 dark:border-gray-700 grid grid-cols-1 md:grid-cols-5"> */}
       <DashboardSidebar />
       {children}
+      {/* </div> */}
     </div>
   );
 }

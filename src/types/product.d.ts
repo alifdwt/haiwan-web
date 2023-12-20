@@ -1,12 +1,20 @@
 interface IProduct {
-  id: number;
+  _id: number;
+  creator: string;
   title: string;
   price: number;
   description: string;
   category: string;
-  image: string;
+  imageData: [
+    {
+      _id: string;
+      image: string;
+    }
+  ];
   rating: {
     rate: number;
     count: number;
   };
+  createdAt: string;
+  __v: number;
 }

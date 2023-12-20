@@ -5,6 +5,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import { Progress } from "../ui/progress";
 import StarRating from "../ui/star";
 import Link from "next/link";
+import { ToRupiah } from "../util/currency";
 
 async function getData() {
   const res = await fetch("http://localhost:3000/api/p?limit=8", {
@@ -41,6 +42,9 @@ const TrendingProducts = async () => {
       {/* trending products */}
       <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[.75fr_1fr_1fr] mt-4">
         <Card className="col-span-1 row-span-4 hover:bg-gray-100 dark:hover:bg-gray-800 hover:cursor-pointer">
+        <Link href={`/p/cat/${productWithHighestRatingCount.category.split(" ").join("-")}/${
+              productWithHighestRatingCount._id
+            }`}>
           <CardHeader>
             <div className="text-center ">
               <p className="uppercase mb-2">Offer ends at</p>
@@ -55,7 +59,7 @@ const TrendingProducts = async () => {
                   27
                 </li>
                 <li className="relative w-[34px] h-[34px] p-2 text-secondaryDark bg-gray-300 rounded-lg dark:bg-gray-700 leading-none">
-                  60
+                  50
                 </li>
               </ul>
             </div>
@@ -63,7 +67,7 @@ const TrendingProducts = async () => {
           <CardContent>
             <div className="flex justify-center">
               <Image
-                src={productWithHighestRatingCount.image}
+                src={productWithHighestRatingCount.imageData[0].image}
                 alt={productWithHighestRatingCount.title}
                 width={200}
                 height={200}
@@ -73,10 +77,16 @@ const TrendingProducts = async () => {
             <div className="flex flex-col gap-2">
               <div className="flex gap-2 items-center mt-2">
                 <StarRating
-                  rating={productWithHighestRatingCount.rating.rate}
+                  rating={
+                    productWithHighestRatingCount.rating
+                      ? productWithHighestRatingCount.rating.rate
+                      : Math.floor(Math.random() * 5) + 1
+                  }
                 />
                 <p className="text-secondaryDark">
-                  {productWithHighestRatingCount.rating.count}
+                  {productWithHighestRatingCount.rating
+                    ? productWithHighestRatingCount.rating.count
+                    : Math.floor(Math.random() * 100)}
                 </p>
               </div>
               <h2 className="font-bold">
@@ -84,10 +94,10 @@ const TrendingProducts = async () => {
               </h2>
               <div className="flex gap-4 items-center">
                 <h3 className="font-bold text-primary">
-                  ${productWithHighestRatingCount.price}
+                  {ToRupiah(productWithHighestRatingCount.price)}
                 </h3>
                 <h5 className="text-secondaryDark text-xs line-through">
-                  ${productWithHighestRatingCount.price * 1.5}
+                  {ToRupiah(productWithHighestRatingCount.price * 1.5)}
                 </h5>
               </div>
               <div className="flex items-center justify-between">
@@ -102,18 +112,19 @@ const TrendingProducts = async () => {
               <Progress value={30} className="h-2" />
             </div>
           </CardContent>
+        </Link>
         </Card>
         {Products.data.map((product: IProduct) => (
           <Link
             href={`/p/cat/${product.category.split(" ").join("-")}/${
-              product.id
+              product._id
             }`}
             className="flex hover:bg-gray-200 dark:hover:bg-gray-700 p-4 rounded-lg cursor-pointer m-1"
-            key={product.id}
+            key={product._id}
           >
             <div className="w-[100px] h-[120px]">
               <Image
-                src={product.image}
+                src={product.imageData[0].image}
                 alt={product.title}
                 width={200}
                 height={200}
@@ -123,13 +134,25 @@ const TrendingProducts = async () => {
             <div className="flex flex-col gap-2 ml-4 w-full">
               <h2 className="font-semibold">{product.title}</h2>
               <div className="flex gap-2 items-center mt-2">
-                <StarRating rating={product.rating.rate} />
-                <p className="text-secondaryDark">{product.rating.count}</p>
+                <StarRating
+                  rating={
+                    product.rating
+                      ? product.rating.rate
+                      : Math.floor(Math.random() * 5) + 1
+                  }
+                />
+                <p className="text-secondaryDark">
+                  {product.rating
+                    ? product.rating.count
+                    : Math.floor(Math.random() * 100)}
+                </p>
               </div>
               <div className="flex gap-4 items-center">
-                <h3 className="font-bold text-primary">${product.price}</h3>
+                <h3 className="font-bold text-primary">
+                  {ToRupiah(product.price)}
+                </h3>
                 <h5 className="text-secondaryDark text-xs line-through">
-                  ${product.price * 1.5}
+                  {ToRupiah(product.price * 1.5)}
                 </h5>
               </div>
               <div className="flex items-center justify-between">
@@ -145,41 +168,3 @@ const TrendingProducts = async () => {
 };
 
 export default TrendingProducts;
-
-{
-  /* <div key={product.id} className="grid grid-rows-4 grid-cols-5">
-            <div className="row-span-4 col-span-2">
-              <Image
-                src={product.image}
-                alt={product.title}
-                width={130}
-                height={160}
-                className="object-fit h-full w-full"
-              />
-            </div>
-            <div className="col-span-3 row-span-1">
-              <h2 className="font-bold">{product.title}</h2>
-            </div>
-            <div className="col-span-3 flex items-center gap-3">
-              <Progress
-                value={(product.rating.rate * 100) / 5}
-                className="h-2 w-[50%]"
-              />
-              <p>{product.rating.count}</p>
-            </div>
-            <div className="col-span-3 flex items-center gap-3">
-              <h3 className="font-bold text-primary">${product.price}</h3>
-              <h5 className="text-secondaryDark text-xs line-through">
-                ${product.price * 1.5}
-              </h5>
-            </div>
-            <div className="col-span-3 flex items-center justify-between">
-              <p className="text-xs">
-                Stock: <span className="text-secondaryDark font-bold">107</span>
-              </p>
-              <p className="text-xs">
-                Sold: <span className="text-secondaryDark font-bold">15</span>
-              </p>
-            </div>
-          </div> */
-}
