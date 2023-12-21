@@ -12,7 +12,7 @@ interface IProduct {
     rate: number;
     count: number;
   }
-  creator: string;
+  creator: ICreator;
   createdAt: string;
   __v: number;
 }

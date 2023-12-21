@@ -1,10 +1,12 @@
 import { Shell, Star } from "lucide-react";
 // import { Products } from "@/constants/dummy";
-import { Card, CardContent, CardFooter } from "../ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
 import Image from "next/image";
 import StarRating from "../ui/star";
 import { ToRupiah } from "../util/currency";
 import Link from "next/link";
+import { Skeleton } from "../ui/skeleton";
+import { ProductResponse } from "./trending";
 
 async function getData() {
   const res = await fetch("http://localhost:3000/api/p?limit=8");
@@ -18,7 +20,6 @@ async function getData() {
 
 const FeaturedProducts = async () => {
   const products = await getData();
-  const rateDummy = Math.floor(Math.random() * 5) + 1;
   return (
     <div className="bg-white w-full dark:bg-gray-900 my-4">
       <div className="max-w-screen-xl flex flex-wrap items-center mx-auto border-b-2 border-gray-200 dark:border-gray-600">
@@ -27,25 +28,59 @@ const FeaturedProducts = async () => {
       </div>
 
       {/* featured products */}
-      <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-4 gap-4 p-4 lg:p-0">
-        {products.data.map((product: IProduct) => (
-          <Card
-            key={product._id}
-            className="col-span-1 row-span-4 hover:bg-gray-100 dark:hover:bg-gray-800 hover:cursor-pointer"
-          >
-            <Link href={`/p/cat/${product.category.split(" ").join("-")}/${
+      {products ? (
+        <FeaturedSection products={products} />
+      ) : (
+        <FeaturedSkeleton value={8} />
+      )}
+    </div>
+  );
+};
+
+export default FeaturedProducts;
+
+export const FeaturedSkeleton = ({ value }: { value: number }) => {
+  return (
+    <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-4 gap-4 p-4 lg:p-0">
+      {[...Array(value)].map((_, index) => (
+        <Card className="col-span-1 row-span-4" key={index}>
+          <Skeleton className="h-96 w-full rounded-md" />
+          <CardFooter className="flex flex-col gap-4 justify-between p-1 h-[120px]">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-full" />
+          </CardFooter>
+        </Card>
+      ))}
+    </div>
+  );
+};
+
+const FeaturedSection = ({ products }: { products: ProductResponse }) => {
+  const rateDummy = Math.floor(Math.random() * 5) + 1;
+  return (
+    <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-4 gap-4 p-4 lg:p-0">
+      {products.data.map((product: IProduct) => (
+        <Card
+          key={product._id}
+          className="col-span-1 row-span-4 hover:bg-gray-100 dark:hover:bg-gray-800 hover:cursor-pointer"
+        >
+          <Link
+            href={`/p/cat/${product.category.split(" ").join("-")}/${
               product._id
-            }`}>
-            <CardContent>
+            }`}
+          >
+            <CardContent className="p-0">
               <Image
                 src={product.imageData[0].image}
                 alt={product.title}
                 width={200}
                 height={200}
-                className="w-full object-cover h-96"
+                className="w-full object-cover h-96 rounded-t-md"
               />
             </CardContent>
-            <CardFooter className="flex flex-col gap-2 justify-between">
+            <CardFooter className="flex flex-col gap-4 justify-between p-1 h-[120px]">
               <div className="w-full">
                 <div className="flex justify-between w-full">
                   <StarRating
@@ -80,12 +115,9 @@ const FeaturedProducts = async () => {
                 </div>
               </div>
             </CardFooter>
-            </Link>
-          </Card>
-        ))}
-      </div>
+          </Link>
+        </Card>
+      ))}
     </div>
   );
 };
-
-export default FeaturedProducts;

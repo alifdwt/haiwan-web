@@ -9,14 +9,14 @@ export async function GET(request: NextRequest) {
   try {
     await connectMongoDB()
     if (limit) {
-      const products = await Product.find().limit(parseInt(limit));
+      const products = await Product.find().populate("creator").limit(parseInt(limit));
       return NextResponse.json({
         status: 200,
         message: "Success",
         data: products,
       })
     }
-    const products = await Product.find();
+    const products = await Product.find().populate("creator");
     return NextResponse.json({
       status: 200,
       message: "Success",

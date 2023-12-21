@@ -20,12 +20,25 @@ import { PawPrint } from "lucide-react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
 export function NavigationMenuDemo() {
@@ -142,14 +155,6 @@ export function NavigationMenuMiddle() {
             <>
               {providers &&
                 Object.values(providers).map((provider: any) => (
-                  // <Button
-                  //   type="button"
-                  //   key={provider.name}
-                  //   onClick={() => signIn(provider.id)}
-                  //   className="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded"
-                  // >
-                  //   Register / Sign In
-                  // </Button>
                   <SignInDialog key={provider.name} provider={provider} />
                 ))}
             </>
@@ -163,8 +168,10 @@ export function NavigationMenuMiddle() {
 const SignInDialog = ({ provider }: { provider: any }) => {
   const signInSchema = z.object({
     email: z.string().email(),
-    password: z.string().min(6, { message: "Password must be at least 6 characters" }),
-  })
+    password: z
+      .string()
+      .min(6, { message: "Password must be at least 6 characters" }),
+  });
 
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -172,12 +179,12 @@ const SignInDialog = ({ provider }: { provider: any }) => {
       email: "",
       password: "",
     },
-  })
+  });
 
   function onSubmit(values: z.infer<typeof signInSchema>) {
-    signIn(provider.id, { ...values })
+    signIn(provider.id, { ...values });
   }
-  
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -190,22 +197,49 @@ const SignInDialog = ({ provider }: { provider: any }) => {
         </DialogHeader>
         <div className="flex flex-col gap-2">
           <div className="grid md:grid-cols-2 gap-2 mb-3">
-            <Button type="button" onClick={() => signIn(provider.id)} className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55">
-              <svg className="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
-                <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
+            <Button
+              type="button"
+              onClick={() => signIn(provider.id)}
+              className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55"
+            >
+              <svg
+                className="w-4 h-4 me-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 18 19"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+                  clip-rule="evenodd"
+                />
               </svg>
               Sign in with Google
             </Button>
             <Button className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55">
-              <svg className="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
+              <svg
+                className="w-4 h-4 me-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 8 19"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z"
+                  clip-rule="evenodd"
+                />
               </svg>
               Sign in with Facebook
             </Button>
           </div>
           <Separator />
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="flex flex-col gap-2"
+            >
               <FormField
                 control={form.control}
                 name="email"
@@ -226,7 +260,11 @@ const SignInDialog = ({ provider }: { provider: any }) => {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input placeholder="Password" {...field} type="password" />
+                      <Input
+                        placeholder="Password"
+                        {...field}
+                        type="password"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -240,5 +278,5 @@ const SignInDialog = ({ provider }: { provider: any }) => {
         </div>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

@@ -35,16 +35,16 @@ export default function RootLayout({
     <html lang="en">
       <body className="flex flex-col justify-between min-h-screen">
         <Provider>
-        {!disableNavbar.includes(pathname) && (
-          <div>
-            <Navbar />
-          </div>
-        )}
-        <Suspense>
-          <main>{children}</main>
-        </Suspense>
-        {!disableNavbar.includes(pathname) && <Footer />}
-      </Provider>
+          {!disableNavbar.includes(pathname as string) && (
+            <div>
+              <Navbar />
+            </div>
+          )}
+          <Suspense>
+            <main>{children}</main>
+          </Suspense>
+          {!disableNavbar.includes(pathname as string) && <Footer />}
+        </Provider>
       </body>
     </html>
   );

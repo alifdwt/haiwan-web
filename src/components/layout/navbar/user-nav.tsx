@@ -14,7 +14,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 
-const UserNav = ({session, signOut}: any) => {
+const UserNav = ({ session, signOut }: any) => {
+  // console.log(session);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -28,13 +29,17 @@ const UserNav = ({session, signOut}: any) => {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal flex flex-col gap-2">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{session?.user?.name}</p>
+            <p className="text-sm font-medium leading-none">
+              {session?.user?.name}
+            </p>
             <p className="text-xs leading-none text-muted-foreground">
               {session?.user?.email}
             </p>
           </div>
           <Link
-            href="/dashboard"
+            href={`${session?.user?.name
+              .replace(" ", "")
+              .toLowerCase()}/dashboard`}
             className="w-full bg-secondary text-center text-white rounded-md p-1.5 hover:bg-secondary/80"
           >
             Seller Dashboard

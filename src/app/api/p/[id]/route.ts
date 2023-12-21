@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
     try {
         await connectMongoDB();
-        const product = await Product.findById(params.id);
+        const product = await Product.findById(params.id).populate("creator");
         if (!product) {
             return NextResponse.json({
                 status: 404,
