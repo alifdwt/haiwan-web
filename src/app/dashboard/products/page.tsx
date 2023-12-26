@@ -17,7 +17,7 @@ const ProductsDashboard = () => {
     const getProducts = async () => {
       setFetching(true);
       try {
-        const response = await fetch("/api/p");
+        const response = await fetch(`/api/p?creator=${session?.user?.id}`);
         const data = await response.json();
         setProducts(data.data);
       } catch (error) {
@@ -27,7 +27,7 @@ const ProductsDashboard = () => {
       }
     };
     getProducts();
-  }, []);
+  }, [session?.user?.id]);
 
   const createProduct = async (data: ProductFormValues) => {
     setSubmitting(true);

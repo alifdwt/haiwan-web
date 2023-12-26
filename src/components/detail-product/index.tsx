@@ -12,6 +12,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import ProductSwiper from "./product-swiper";
+import { AddToCart } from "./add-to-cart";
 
 type DetailProductPageProps = {
   params: {
@@ -47,13 +48,6 @@ const DetailProductPage = async (props: DetailProductPageProps) => {
         <Link href={`/p/${params.slug[0]}`} className="text-primary">
           {params.slug[0]}
         </Link>
-        {/* <p>&gt;</p>
-        <Link
-          href={`/p/${params.slug[0]}/${params.slug[1]}`}
-          className="text-primary"
-        >
-          {params.slug[1]}
-        </Link> */}
         <p>&gt;</p>
         <p>{Product.data.title}</p>
       </div>
@@ -95,24 +89,7 @@ const DetailProductPage = async (props: DetailProductPageProps) => {
           </p>
           <div className="flex flex-col gap-2 justify-between">
             <Button className="w-full rounded-full">Buy Now</Button>
-            <div className="flex gap-2 items-center">
-              <div className="flex gap-2 border w-[30%]">
-                {/* <Button className="rounded-full bg-gray-200 h-5 w-5">-</Button> */}
-                <Input
-                  type="number"
-                  className="w-full text-center border-none"
-                  defaultValue={1}
-                />
-                {/* <Button className="rounded-full bg-gray-200 h-5 w-5">+</Button> */}
-              </div>
-              <Button
-                variant={"secondary"}
-                className="w-[70%] flex gap-2 text-white rounded-full"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                Add to cart
-              </Button>
-            </div>
+            <AddToCart id={Product.data._id} />
           </div>
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">
