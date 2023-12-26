@@ -28,16 +28,12 @@ export default Hero;
 const NewArrival = () => {
   const [images, setImages] = useState([
     {
-      src: "https://images.pexels.com/photos/5319920/pexels-photo-5319920.jpeg",
-      alt: "Pemandangan alam",
+      src: "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703140193/Haiwan/Commerce/3266488_481599-PH02V3-636_kglmjb.jpg",
+      alt: "Hero-1",
     },
     {
-      src: "https://images.pexels.com/photos/1068819/pexels-photo-1068819.jpeg",
-      alt: "Kota metropolitan",
-    },
-    {
-      src: "https://images.pexels.com/photos/8395860/pexels-photo-8395860.jpeg",
-      alt: "Bintang-bintang di langit malam",
+      src: "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703140194/Haiwan/Commerce/17877031_5925412_qbntme.jpg",
+      alt: "hero-2",
     },
   ]);
 
@@ -56,6 +52,7 @@ const NewArrival = () => {
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
+        loop={true}
       >
         {images.map((image: any, index: number) => (
           <SwiperSlide key={index}>

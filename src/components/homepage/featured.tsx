@@ -1,3 +1,5 @@
+"use client";
+
 import { Shell, Star } from "lucide-react";
 // import { Products } from "@/constants/dummy";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
@@ -7,19 +9,28 @@ import { ToRupiah } from "../util/currency";
 import Link from "next/link";
 import { Skeleton } from "../ui/skeleton";
 import { ProductResponse } from "./trending";
+import { useEffect, useState } from "react";
 
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/p?limit=8");
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
+const FeaturedProducts = () => {
+  const [fetching, setFetching] = useState(false);
+  const [products, setProducts] = useState<ProductResponse>();
 
-  return res.json();
-}
+  useEffect(() => {
+    const getProducts = async () => {
+      setFetching(true);
+      try {
+        const response = await fetch("http://localhost:3000/api/p?limit=8");
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setFetching(false);
+      }
+    };
+    getProducts();
+  }, []);
 
-const FeaturedProducts = async () => {
-  const products = await getData();
   return (
     <div className="bg-white w-full dark:bg-gray-900 my-4">
       <div className="max-w-screen-xl flex flex-wrap items-center mx-auto border-b-2 border-gray-200 dark:border-gray-600">
@@ -28,10 +39,10 @@ const FeaturedProducts = async () => {
       </div>
 
       {/* featured products */}
-      {products ? (
-        <FeaturedSection products={products} />
-      ) : (
+      {products === undefined ? (
         <FeaturedSkeleton value={8} />
+      ) : (
+        <FeaturedSection products={products as ProductResponse} />
       )}
     </div>
   );
@@ -67,7 +78,7 @@ const FeaturedSection = ({ products }: { products: ProductResponse }) => {
           className="col-span-1 row-span-4 hover:bg-gray-100 dark:hover:bg-gray-800 hover:cursor-pointer"
         >
           <Link
-            href={`/p/cat/${product.category.split(" ").join("-")}/${
+            href={`${product.creator.username.split(" ").join("-")}/${
               product._id
             }`}
           >

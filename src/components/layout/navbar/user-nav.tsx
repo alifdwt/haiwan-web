@@ -37,9 +37,7 @@ const UserNav = ({ session, signOut }: any) => {
             </p>
           </div>
           <Link
-            href={`${session?.user?.name
-              .replace(" ", "")
-              .toLowerCase()}/dashboard`}
+            href="/dashboard"
             className="w-full bg-secondary text-center text-white rounded-md p-1.5 hover:bg-secondary/80"
           >
             Seller Dashboard
@@ -56,7 +54,9 @@ const UserNav = ({ session, signOut }: any) => {
             <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            Settings
+            <Link href="/settings" className="w-full">
+              Settings
+            </Link>
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>New Team</DropdownMenuItem>

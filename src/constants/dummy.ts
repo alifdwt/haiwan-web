@@ -1,4 +1,4 @@
-export const Products: IProduct[] = [
+export const productsDummy: IProduct[] = [
   {
     _id: "65817b51c47cbb3732cd4c1f",
     creator: {
@@ -179,5 +179,50 @@ export const ImagesDummy = [
   {
     title: "Gambar-7",
     link: "https://picsum.photos/960/540",
+  },
+];
+
+export const AddressDummy = [
+  {
+    _id: "1",
+    creator: "658166462140324bb002e5fb",
+    address_name: "Rumah Saya",
+    recipient: "Alif Dewantara",
+    city: "Jakarta",
+    province: "DKI Jakarta",
+    phone: "081234567890",
+    postcode: "12345",
+    address: "Jl. Jend. Sudirman no. 15",
+    note: "Front of Indomaret",
+    coordinates: "",
+    is_primary: true,
+  },
+  {
+    _id: "2",
+    creator: "658166462140324bb002e5fb",
+    address_name: "Kantor Saya",
+    recipient: "Patrick Star",
+    city: "Jakarta",
+    province: "DKI Jakarta",
+    phone: "089876543210",
+    postcode: "54321",
+    address: "Jl. Mega Kuningan no. 32",
+    note: "",
+    coordinates: "-6.21462, 106.84513",
+    is_primary: false,
+  },
+  {
+    _id: "3",
+    creator: "658166462140324bb002e5fb",
+    address_name: "Rumah Teman",
+    recipient: "Sandy Cheeks",
+    city: "Bandung",
+    province: "Jawa Barat",
+    phone: "081234567890",
+    postcode: "12345",
+    address: "Jl. Dago no. 15",
+    note: "Next to the grocery store",
+    coordinates: "-6.21462, 106.84513",
+    is_primary: false,
   },
 ];
