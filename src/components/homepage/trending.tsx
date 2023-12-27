@@ -26,7 +26,7 @@ const TrendingProducts = () => {
     const getProducts = async () => {
       setFetching(true);
       try {
-        const response = await fetch("http://localhost:3000/api/p?limit=8");
+        const response = await fetch("/api/p?limit=8");
         const data = await response.json();
         setProducts(data);
       } catch (error) {
