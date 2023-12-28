@@ -43,21 +43,23 @@ const productFormSchema = z.object({
 
 export type ProductFormValues = z.infer<typeof productFormSchema>;
 
-const defaultValues: Partial<ProductFormValues> = {
-  title: "",
-  description: "",
-  price: "0",
-  category: "",
-  imageData: [{ image: "" }, { image: "" }],
-};
-
 export function FormProduct({
+  product,
   onSubmit,
   submitting,
 }: {
+  product?: ProductFormValues;
   onSubmit: (values: ProductFormValues) => void;
   submitting: boolean;
 }) {
+  const defaultValues: Partial<ProductFormValues> = {
+    title: product?.title || "",
+    description: product?.description || "",
+    price: product?.price || "0",
+    category: product?.category || "",
+    imageData: product?.imageData || [{ image: "" }, { image: "" }],
+  };
+
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
     defaultValues,
@@ -162,7 +164,7 @@ export function FormProduct({
   );
 }
 
-const FormDashboard = ({ type, onSubmit, submitting }: any) => {
+const FormDashboard = ({ product, type, onSubmit, submitting }: any) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -173,7 +175,11 @@ const FormDashboard = ({ type, onSubmit, submitting }: any) => {
           <SheetTitle>{type} Product</SheetTitle>
           <SheetDescription>{type} your product.</SheetDescription>
         </SheetHeader>
-        <FormProduct onSubmit={onSubmit} submitting={submitting} />
+        <FormProduct
+          product={product}
+          onSubmit={onSubmit}
+          submitting={submitting}
+        />
         {/* <SheetFooter>
             <SheetClose asChild>
               <Button type="submit">Save Changes</Button>

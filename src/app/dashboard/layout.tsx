@@ -9,10 +9,12 @@ export default function DashboardLayout({
   return (
     <div>
       <NavbarDashboard />
-      {/* <div className="border-b border-gray-200 dark:border-gray-700 grid grid-cols-1 md:grid-cols-5"> */}
-      <DashboardSidebar />
-      {children}
-      {/* </div> */}
+      <div className="grid gap-4 xl:grid-cols-5 2xl:grid-cols-6">
+        <div className="hidden xl:block col-span-1">
+          <DashboardSidebar />
+        </div>
+        <div className="xl:col-span-4 2xl:col-span-5 p-4">{children}</div>
+      </div>
     </div>
   );
 }

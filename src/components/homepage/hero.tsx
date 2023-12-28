@@ -18,7 +18,7 @@ const Hero = () => {
           </div>
           {categoryDummy.map((item, index) => (
             <Link
-              href={item.name}
+              href={`/category/${item.name}`}
               key={index}
               className="flex items-center justify-between pr-2 hover:bg-gray-300"
             >

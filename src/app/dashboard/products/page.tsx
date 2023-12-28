@@ -1,72 +1,44 @@
-"use client";
+import FormDashboard from "@/components/dashboard/form";
+import columns from "@/components/dashboard/products/columns";
+import { ProductsDataTable } from "@/components/dashboard/products/data-table";
 
-import { useEffect, useState } from "react";
-import { columns } from "./columns";
-import { DataTable } from "./data-table";
-import FormDashboard, { ProductFormValues } from "@/components/dashboard/form";
-import { useSession } from "next-auth/react";
-
-const ProductsDashboard = () => {
-  const { data: session }: any = useSession();
-
-  const [products, setProducts] = useState<IProduct[]>([]);
-  const [fetching, setFetching] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
-  useEffect(() => {
-    const getProducts = async () => {
-      setFetching(true);
-      try {
-        const response = await fetch(`/api/p?creator=${session?.user?.id}`);
-        const data = await response.json();
-        setProducts(data.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setFetching(false);
-      }
-    };
-    getProducts();
-  }, [session?.user?.id]);
-
-  const createProduct = async (data: ProductFormValues) => {
-    setSubmitting(true);
-    try {
-      const response = await fetch("/api/p/new", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...data, userId: session?.user?.id }),
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setSubmitting(false);
+async function getProductsByCreator(creator: string) {
+  const response = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/p?creator=${creator}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: "no-store",
     }
-  };
+  );
+
+  if (!response.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return response.json();
+}
+
+export default async function DashboardProductPage() {
+  // const { data: session } = useSession();
+  const products = await getProductsByCreator("658166462140324bb002e5fb");
 
   return (
-    <div className="my-5 p-4 sm:ml-64">
-      <h1 className="text-3xl font-bold">Products Dashboard</h1>
-      <p className="text-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
-        ratione, assumenda quisquam totam mollitia dolor amet harum fugit magnam
-        possimus accusamus omnis laborum saepe eos ea qui dicta ducimus
-        distinctio praesentium doloribus labore quo! Ut tempore necessitatibus
-        laudantium nihil eligendi amet nostrum magni eaque quis officia veniam
-        expedita, sunt quos?
+    <>
+      <h1 className="text-3xl font-bold">Products</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+        necessitatibus quaerat vel exercitationem corrupti expedita pariatur
+        itaque cumque, magnam odit nemo hic maxime ducimus alias omnis veritatis
+        sed eos, accusantium rem, porro iste a? Cupiditate, voluptas quas eos
+        deserunt tenetur autem reiciendis illum, eum veritatis culpa aliquam
+        vero, quaerat alias.
       </p>
-      <div className="mx-auto py-10">
-        <FormDashboard
-          type="Add"
-          onSubmit={createProduct}
-          submitting={submitting}
-        />
-        <DataTable columns={columns} data={products} />
-      </div>
-    </div>
+      <FormDashboard type="Add" submitting={false} />
+      <ProductsDataTable data={products.data} columns={columns} />
+    </>
   );
-};
-
-export default ProductsDashboard;
+}

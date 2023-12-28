@@ -6,6 +6,7 @@ import UserNav from "../layout/navbar/user-nav";
 import { Button } from "@/components/ui/button";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { SignInDialog } from "../layout/navbar/middle-nav";
 
 const NavbarDashboard = () => {
   const { data: session } = useSession();
@@ -44,14 +45,7 @@ const NavbarDashboard = () => {
             <>
               {providers &&
                 Object.values(providers).map((provider: any) => (
-                  <button
-                    type="button"
-                    key={provider.name}
-                    onClick={() => signIn(provider.id)}
-                    className="bg-primary hover:bg-primary/80 text-white font-bold py-2 px-4 rounded"
-                  >
-                    Register / Sign In
-                  </button>
+                  <SignInDialog key={provider.name} provider={provider} />
                 ))}
             </>
           )}

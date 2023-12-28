@@ -167,7 +167,7 @@ export function NavigationMenuMiddle() {
   );
 }
 
-const SignInDialog = ({ provider }: { provider: any }) => {
+export const SignInDialog = ({ provider }: { provider: any }) => {
   const signInSchema = z.object({
     email: z.string().email(),
     password: z
