@@ -59,7 +59,7 @@ const TrendingProducts = async () => {
       ) : (
         <TrendingSkeleton value={8} />
       )} */}
-      {products === undefined ? (
+      {products.data === undefined ? (
         <TrendingSkeleton value={8} />
       ) : (
         <TrendingSection products={products} />

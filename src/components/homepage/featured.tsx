@@ -54,7 +54,7 @@ const FeaturedProducts = async () => {
       </div>
 
       {/* featured products */}
-      {products === undefined ? (
+      {products.data === undefined ? (
         <FeaturedSkeleton value={8} />
       ) : (
         <FeaturedSection products={products as ProductsResponse} />

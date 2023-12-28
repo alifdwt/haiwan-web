@@ -230,57 +230,104 @@ export const AddressDummy = [
 export const categoryDummy = [
   {
     _id: "658c400ee83995f084485930",
-    name: "Cat",
+    name: "cat",
     desc: "An animal with four legs",
     image:
       "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/cat_kzjlqg.png",
     createdAt: "2023-12-27T15:17:34.038Z",
     __v: 0,
+    subcategories: [
+      {
+        _id: "658d28e03f3ad93868a621f6",
+        name: "Food and Supplements",
+        desc: "Something that these animal mostly needed",
+        image:
+          "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703749732/Haiwan/Commerce/subcategories/pet-food_vdhphb.png",
+        category: "658c400ee83995f084485930",
+        createdAt: "2023-12-28T07:50:56.460Z",
+        __v: 0,
+      },
+      {
+        _id: "658d29313f3ad93868a621f8",
+        name: "Utensil",
+        desc: "A tool that so important for your pet",
+        image:
+          "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703749732/Haiwan/Commerce/subcategories/cat-box_drcthh.png",
+        category: "658c400ee83995f084485930",
+        createdAt: "2023-12-28T07:52:17.527Z",
+        __v: 0,
+      },
+      {
+        _id: "658d294b3f3ad93868a621fa",
+        name: "Drugs and vitamins",
+        desc: "Not that drugs",
+        image:
+          "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703749732/Haiwan/Commerce/subcategories/medicine_ucubke.png",
+        category: "658c400ee83995f084485930",
+        createdAt: "2023-12-28T07:52:43.167Z",
+        __v: 0,
+      },
+      {
+        _id: "658d29643f3ad93868a621fc",
+        name: "Cages",
+        desc: "Your pet house, basically",
+        image:
+          "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703749731/Haiwan/Commerce/subcategories/cage_lqja4u.png",
+        category: "658c400ee83995f084485930",
+        createdAt: "2023-12-28T07:53:08.529Z",
+        __v: 0,
+      },
+    ],
   },
   {
     _id: "658c4082e83995f084485932",
-    name: "Dog",
+    name: "dog",
     desc: "Same as a cat, but more intellegent",
     image:
       "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/dog_iw6umj.png",
     createdAt: "2023-12-27T15:19:30.126Z",
     __v: 0,
+    subcategories: [],
   },
   {
     _id: "658c4125e83995f084485936",
-    name: "Small Animal",
+    name: "small-animal",
     desc: "Hamster, etc",
     image:
       "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/small-animal_ycbb9v.png",
     createdAt: "2023-12-27T15:22:13.083Z",
     __v: 0,
+    subcategories: [],
   },
   {
     _id: "658c4153e83995f084485938",
-    name: "Reptile",
+    name: "reptile",
     desc: "Cold blooded animal",
     image:
       "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/reptile_msrfjq.png",
     createdAt: "2023-12-27T15:22:59.402Z",
     __v: 0,
+    subcategories: [],
   },
   {
     _id: "658c4170e83995f08448593a",
-    name: "Bird",
+    name: "bird",
     desc: "An animal that could fly",
     image:
       "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/bird_cyavrr.png",
     createdAt: "2023-12-27T15:23:28.130Z",
     __v: 0,
+    subcategories: [],
   },
   {
     _id: "658c418ee83995f08448593c",
-    name: "Fish",
+    name: "fish",
     desc: "Something that Spongebob Squarepants characters belong to",
     image:
       "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/fish_oyqgzc.png",
     createdAt: "2023-12-27T15:23:58.413Z",
     __v: 0,
+    subcategories: [],
   },
 ];
 

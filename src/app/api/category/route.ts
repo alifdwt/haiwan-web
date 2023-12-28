@@ -5,7 +5,16 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest) {
   try {
     await connectMongoDB();
-    const categories = await Category.find();
+    const categories = await Category.aggregate([
+      {
+        $lookup: {
+          from: "subcategories", // Nama koleksi subkategori dalam database Anda
+          localField: "_id",
+          foreignField: "category",
+          as: "subcategories",
+        },
+      },
+    ]);
     return NextResponse.json({
       status: 200,
       message: "Success",

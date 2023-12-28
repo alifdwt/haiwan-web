@@ -1,7 +1,7 @@
 import DetailProductPage from "@/components/detail-product";
 import StorePage from "@/components/store-page";
 
-type SlugPageProps = {
+export type SlugPageProps = {
   params: {
     slug: string[];
   };

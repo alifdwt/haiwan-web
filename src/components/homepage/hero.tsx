@@ -17,24 +17,22 @@ const Hero = () => {
             <List />
           </div>
           {categoryDummy.map((item, index) => (
-            <div
+            <Link
+              href={item.name}
               key={index}
               className="flex items-center justify-between pr-2 hover:bg-gray-300"
             >
-              <Link
-                href={`category/${item.name.toLowerCase().replace(" ", "-")}`}
-                className="p-2 flex gap-2 items-center"
-              >
+              <div className="p-2 flex gap-2 items-center">
                 <Image
                   src={item.image}
                   alt={item.name}
                   width={35}
                   height={35}
                 />
-                <p>{item.name}</p>
-              </Link>
+                <p>{capitalizeFirstLetter(item.name)}</p>
+              </div>
               <ArrowRight className="w-4 h-4" />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -46,3 +44,8 @@ const Hero = () => {
 };
 
 export default Hero;
+
+function capitalizeFirstLetter(string: string) {
+  const str = string.replace("-", " ");
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}

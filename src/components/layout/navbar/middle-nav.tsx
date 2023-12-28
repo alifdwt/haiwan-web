@@ -145,12 +145,14 @@ export function NavigationMenuMiddle() {
           </p>
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <NavigationMenuDemo />
+          <h1 className="text-xl font-bold">Ini buat navigasi</h1>
         </div>
         <div className="flex md:order-2 gap-2 align-middle">
-          <CartNav />
           {session?.user ? (
-            <UserNav session={session} signOut={signOut} />
+            <>
+              <CartNav />
+              <UserNav session={session} signOut={signOut} />
+            </>
           ) : (
             <>
               {providers &&
