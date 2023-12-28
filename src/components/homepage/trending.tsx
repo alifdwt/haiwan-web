@@ -1,42 +1,51 @@
-"use client";
-
 import { Shell } from "lucide-react";
-// import { Products } from "@/constants/dummy";
-import Image from "next/image";
-import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
-import { Progress } from "../ui/progress";
-import StarRating from "../ui/star";
-import Link from "next/link";
-import { ToRupiah } from "../util/currency";
+import { Card, CardFooter, CardHeader } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
-import { useEffect, useState } from "react";
 import TrendingSection from "./trending-section";
 
-export type ProductResponse = {
+export type ProductsResponse = {
   status: number;
   message: string;
   data: IProduct[];
 };
 
-const TrendingProducts = () => {
-  const [fetching, setFetching] = useState(false);
-  const [products, setProducts] = useState<ProductResponse>();
+async function getProducts() {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/p?limit=8`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
 
-  useEffect(() => {
-    const getProducts = async () => {
-      setFetching(true);
-      try {
-        const response = await fetch("/api/p?limit=8");
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setFetching(false);
-      }
-    };
-    getProducts();
-  }, []);
+  if (!response.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return response.json();
+}
+
+const TrendingProducts = async () => {
+  const products = await getProducts();
+  // const [fetching, setFetching] = useState(false);
+  // const [products, setProducts] = useState<ProductsResponse>();
+
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     setFetching(true);
+  //     try {
+  //       const response = await fetch("/api/p?limit=8");
+  //       const data = await response.json();
+  //       setProducts(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     } finally {
+  //       setFetching(false);
+  //     }
+  //   };
+  //   getProducts();
+  // }, []);
 
   return (
     <div className="bg-white w-full dark:bg-gray-900 my-4">
@@ -53,13 +62,21 @@ const TrendingProducts = () => {
       {products === undefined ? (
         <TrendingSkeleton value={8} />
       ) : (
-        <TrendingSection products={products as ProductResponse} />
+        <TrendingSection products={products} />
       )}
     </div>
   );
 };
 
 export default TrendingProducts;
+
+// export async function getServerSideProps() {
+//   const res = await fetch("/api/p?limit=8");
+//   const response = await res.json();
+//   console.log(response);
+
+//   return { props: { products: response } };
+// }
 
 export const TrendingSkeleton = ({ value }: { value: number }) => {
   return (

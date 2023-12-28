@@ -226,3 +226,98 @@ export const AddressDummy = [
     is_primary: false,
   },
 ];
+
+export const categoryDummy = [
+  {
+    _id: "658c400ee83995f084485930",
+    name: "Cat",
+    desc: "An animal with four legs",
+    image:
+      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/cat_kzjlqg.png",
+    createdAt: "2023-12-27T15:17:34.038Z",
+    __v: 0,
+  },
+  {
+    _id: "658c4082e83995f084485932",
+    name: "Dog",
+    desc: "Same as a cat, but more intellegent",
+    image:
+      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/dog_iw6umj.png",
+    createdAt: "2023-12-27T15:19:30.126Z",
+    __v: 0,
+  },
+  {
+    _id: "658c4125e83995f084485936",
+    name: "Small Animal",
+    desc: "Hamster, etc",
+    image:
+      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/small-animal_ycbb9v.png",
+    createdAt: "2023-12-27T15:22:13.083Z",
+    __v: 0,
+  },
+  {
+    _id: "658c4153e83995f084485938",
+    name: "Reptile",
+    desc: "Cold blooded animal",
+    image:
+      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/reptile_msrfjq.png",
+    createdAt: "2023-12-27T15:22:59.402Z",
+    __v: 0,
+  },
+  {
+    _id: "658c4170e83995f08448593a",
+    name: "Bird",
+    desc: "An animal that could fly",
+    image:
+      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/bird_cyavrr.png",
+    createdAt: "2023-12-27T15:23:28.130Z",
+    __v: 0,
+  },
+  {
+    _id: "658c418ee83995f08448593c",
+    name: "Fish",
+    desc: "Something that Spongebob Squarepants characters belong to",
+    image:
+      "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703689860/Haiwan/Commerce/categories/fish_oyqgzc.png",
+    createdAt: "2023-12-27T15:23:58.413Z",
+    __v: 0,
+  },
+];
+
+export const subcategoryDummy = [
+  {
+    id: "1",
+    animalId: "1",
+    name: "Food and beverages",
+    desc: "Something that these animal mostly needed",
+  },
+  {
+    id: "2",
+    animalId: "1",
+    name: "Utensil",
+    desc: "A tool that so important for your pet",
+  },
+  {
+    id: "3",
+    animalId: "1",
+    name: "Drugs and vitamins",
+    desc: "Not that drugs",
+  },
+  {
+    id: "4",
+    animalId: "1",
+    name: "Cages",
+    desc: "Your pet house, basically",
+  },
+];
+
+export const heroDummy = [
+  {
+    src: "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703140193/Haiwan/Commerce/3266488_481599-PH02V3-636_kglmjb.jpg",
+    alt: "Hero-1",
+  },
+  {
+    src: "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703140194/Haiwan/Commerce/17877031_5925412_qbntme.jpg",
+    alt: "hero-2",
+  },
+];

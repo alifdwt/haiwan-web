@@ -1,5 +1,3 @@
-"use client";
-
 import { Shell, Star } from "lucide-react";
 // import { Products } from "@/constants/dummy";
 import { Card, CardContent, CardFooter, CardHeader } from "../ui/card";
@@ -8,28 +6,45 @@ import StarRating from "../ui/star";
 import { ToRupiah } from "../util/currency";
 import Link from "next/link";
 import { Skeleton } from "../ui/skeleton";
-import { ProductResponse } from "./trending";
-import { useEffect, useState } from "react";
+import { ProductsResponse } from "./trending";
 
-const FeaturedProducts = () => {
-  const [fetching, setFetching] = useState(false);
-  const [products, setProducts] = useState<ProductResponse>();
+async function getProducts() {
+  const response = await fetch(`${process.env.NEXTAUTH_URL}/api/p?limit=8`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
 
-  useEffect(() => {
-    const getProducts = async () => {
-      setFetching(true);
-      try {
-        const response = await fetch("/api/p?limit=8");
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setFetching(false);
-      }
-    };
-    getProducts();
-  }, []);
+  if (!response.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return response.json();
+}
+
+const FeaturedProducts = async () => {
+  const products = await getProducts();
+  // const [fetching, setFetching] = useState(false);
+  // const [products, setProducts] = useState<ProductsResponse>();
+
+  // useEffect(() => {
+  //   const getProducts = async () => {
+  //     setFetching(true);
+  //     try {
+  //       const response = await fetch("/api/p?limit=8");
+  //       const data = await response.json();
+  //       setProducts(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     } finally {
+  //       setFetching(false);
+  //     }
+  //   };
+  //   getProducts();
+  // }, []);
 
   return (
     <div className="bg-white w-full dark:bg-gray-900 my-4">
@@ -42,7 +57,7 @@ const FeaturedProducts = () => {
       {products === undefined ? (
         <FeaturedSkeleton value={8} />
       ) : (
-        <FeaturedSection products={products as ProductResponse} />
+        <FeaturedSection products={products as ProductsResponse} />
       )}
     </div>
   );
@@ -68,7 +83,7 @@ export const FeaturedSkeleton = ({ value }: { value: number }) => {
   );
 };
 
-const FeaturedSection = ({ products }: { products: ProductResponse }) => {
+const FeaturedSection = ({ products }: { products: ProductsResponse }) => {
   const rateDummy = Math.floor(Math.random() * 5) + 1;
   return (
     <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-4 gap-4 p-4 lg:p-0">

@@ -1,17 +1,14 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ToRupiah } from "../util/currency";
-import { ShoppingCart } from "lucide-react";
 import StarRating from "../ui/star";
-import { Input } from "../ui/input";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import ProductSwiper from "./product-swiper";
+import { ProductSwiperJS } from "./product-swiper";
 import { AddToCart } from "./add-to-cart";
 
 type DetailProductPageProps = {
@@ -21,7 +18,7 @@ type DetailProductPageProps = {
 };
 
 async function getData(id: string) {
-  const res = await fetch(`http://localhost:3000/api/p/${id}`, {
+  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/p/${id}`, {
     cache: "no-store",
   });
 
@@ -52,8 +49,8 @@ const DetailProductPage = async (props: DetailProductPageProps) => {
         <p>{Product.data.title}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_.75fr]">
-        <div className="col-span-1 flex justify-center">
-          <ProductSwiper
+        <div className="col-span-1 mx-auto">
+          <ProductSwiperJS
             images={Product.data.imageData.map((image: any) => image.image)}
           />
         </div>

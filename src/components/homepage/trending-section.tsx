@@ -1,12 +1,12 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Link from "next/link";
-import { ProductResponse } from "./trending";
+import { ProductsResponse } from "./trending";
 import Image from "next/image";
 import StarRating from "../ui/star";
 import { ToRupiah } from "../util/currency";
 import { Progress } from "../ui/progress";
 
-const TrendingSection = ({ products }: { products: ProductResponse }) => {
+const TrendingSection = ({ products }: { products: ProductsResponse }) => {
   const productWithHighestRatingCount = products.data[0];
   return (
     <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[.75fr_1fr_1fr] mt-4">

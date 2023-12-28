@@ -1,20 +1,42 @@
-"use client";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { useState } from "react";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import Image from "next/image";
+import { categoryDummy } from "@/constants/dummy";
+import { ArrowRight, List } from "lucide-react";
+import Link from "next/link";
+import NewArrival from "./new-arrival";
 
 const Hero = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-screen-xl mx-auto my-5">
-      <div className="col-span-1 bg-primary">
-        <h1 className="text-3xl font-bold text-white text-center">
-          Ini buat kategori
-        </h1>
+      <div className="col-span-1">
+        <div className="border rounded-t-lg">
+          <div className="bg-primary rounded-t-lg text-white px-2 py-1 flex justify-between items-center">
+            <div>
+              <p className="font-bold">All Categories</p>
+              <p>Total {categoryDummy.length} Categories</p>
+            </div>
+            <List />
+          </div>
+          {categoryDummy.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-between pr-2 hover:bg-gray-300"
+            >
+              <Link
+                href={`category/${item.name.toLowerCase().replace(" ", "-")}`}
+                className="p-2 flex gap-2 items-center"
+              >
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={35}
+                  height={35}
+                />
+                <p>{item.name}</p>
+              </Link>
+              <ArrowRight className="w-4 h-4" />
+            </div>
+          ))}
+        </div>
       </div>
       <div className="col-span-2">
         <NewArrival />
@@ -24,48 +46,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-const NewArrival = () => {
-  const [images, setImages] = useState([
-    {
-      src: "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703140193/Haiwan/Commerce/3266488_481599-PH02V3-636_kglmjb.jpg",
-      alt: "Hero-1",
-    },
-    {
-      src: "https://res.cloudinary.com/dxirtmo5t/image/upload/v1703140194/Haiwan/Commerce/17877031_5925412_qbntme.jpg",
-      alt: "hero-2",
-    },
-  ]);
-
-  return (
-    <div className="w-full">
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-        loop={true}
-      >
-        {images.map((image: any, index: number) => (
-          <SwiperSlide key={index}>
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={960}
-              height={540}
-              className="aspect-[21/9] object-cover"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
-  );
-};
