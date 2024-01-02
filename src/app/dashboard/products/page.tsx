@@ -1,30 +1,42 @@
+"use client";
+
 import FormDashboard from "@/components/dashboard/form";
-import columns from "@/components/dashboard/products/columns";
 import { ProductsDataTable } from "@/components/dashboard/products/data-table";
+import { ProductsResponse } from "@/components/homepage/trending";
+import columns from "@/components/dashboard/products/columns";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
-async function getProductsByCreator(creator: string) {
-  const response = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/p?creator=${creator}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      cache: "no-store",
-    }
-  );
+export default function DashboardProductPage() {
+  const [products, setProducts] = useState<ProductsResponse>();
+  const [fetching, setFetching] = useState(false);
+  const { data: session, status }: any = useSession();
 
-  if (!response.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return response.json();
-}
-
-export default async function DashboardProductPage() {
-  // const { data: session } = useSession();
-  const products = await getProductsByCreator("658166462140324bb002e5fb");
+  useEffect(() => {
+    const getProductsByCreator = async () => {
+      setFetching(true);
+      try {
+        const response = await fetch(
+          `/api/p?creator=${session?.user?.id || ""}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            cache: "no-store",
+          }
+        );
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setFetching(false);
+      }
+    };
+    getProductsByCreator();
+  }, [session?.user?.id]);
 
   return (
     <>
@@ -38,7 +50,11 @@ export default async function DashboardProductPage() {
         vero, quaerat alias.
       </p>
       <FormDashboard type="Add" submitting={false} />
-      <ProductsDataTable data={products.data} columns={columns} />
+      {products ? (
+        <ProductsDataTable data={products?.data} columns={columns} />
+      ) : (
+        <Skeleton className="h-96 w-full rounded-md" />
+      )}
     </>
   );
 }

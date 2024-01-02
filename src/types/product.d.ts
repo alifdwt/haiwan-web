@@ -3,7 +3,14 @@ interface IProduct {
   title: string;
   description: string;
   price: number;
-  category: string;
+  subcategory: {
+    _id: string;
+    name: string;
+    category: {
+      _id: string;
+      name: string;
+    };
+  };
   imageData: Array<{
     image: string;
     _id: string;
@@ -11,7 +18,7 @@ interface IProduct {
   rating?: {
     rate: number;
     count: number;
-  }
+  };
   creator: ICreator;
   createdAt: string;
   __v: number;

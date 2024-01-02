@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export const ProductSwiperJS = ({ images }: any) => {
   return (
-    <div className="flex flex-col gap-2 items-center w-[500px]">
+    <div className="flex flex-col gap-2 items-center">
       <Carousel
         plugins={[Autoplay({ delay: 5000, stopOnInteraction: false })]}
         opts={{ align: "start", loop: true }}
@@ -27,7 +27,7 @@ export const ProductSwiperJS = ({ images }: any) => {
                   alt={image}
                   width={500}
                   height={500}
-                  className="aspect-[1/1] object-cover"
+                  className="aspect-[1/1] object-cover w-full"
                 />
               </Link>
             </CarouselItem>

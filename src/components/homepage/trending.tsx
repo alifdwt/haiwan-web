@@ -2,11 +2,18 @@ import { Shell } from "lucide-react";
 import { Card, CardFooter, CardHeader } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 import TrendingSection from "./trending-section";
+import { ProvincesResponse } from "@/app/settings/address/address-form";
 
 export type ProductsResponse = {
   status: number;
   message: string;
   data: IProduct[];
+};
+
+export type ProductResponse = {
+  status: number;
+  message: string;
+  data: IProduct;
 };
 
 async function getProducts() {
@@ -26,8 +33,28 @@ async function getProducts() {
   return response.json();
 }
 
+// async function getProvinces() {
+//   const response = await fetch("https://api.rajaongkir.com/starter/province", {
+//     method: "GET",
+//     headers: {
+//       key: "7abde95ef7cb7b9f3cd2770685085807",
+//     },
+//   });
+
+//   if (!response.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error("Failed to fetch data");
+//   }
+
+//   const data: ProvincesResponse = await response.json();
+
+//   return data;
+// }
+
 const TrendingProducts = async () => {
   const products = await getProducts();
+  // const provinces = await getProvinces();
+  // console.log(provinces);
   // const [fetching, setFetching] = useState(false);
   // const [products, setProducts] = useState<ProductsResponse>();
 

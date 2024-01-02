@@ -56,35 +56,41 @@ const CartNav = () => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          {filteredProducts.map((product: any) => (
-            <DropdownMenuItem
-              key={product._id}
-              className="flex justify-between"
-            >
-              <div className="flex items-center space-x-3">
-                <Image
-                  src={product.imageData[0].image}
-                  alt="product"
-                  width={50}
-                  height={50}
-                  className="h-12 w-12 object-cover rounded-md"
-                />
-                <div className="flex flex-col ml-4 w-64">
-                  <p>{product.title}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {product.quantity} x {ToRupiah(product.price)}
-                  </p>
-                </div>
-              </div>
-              <Button
-                variant={"destructive"}
-                size={"icon"}
-                onClick={() => removeFromCart(product._id)}
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product: any) => (
+              <DropdownMenuItem
+                key={product._id}
+                className="flex justify-between"
               >
-                <Trash2 className="h-5 w-5" />
-              </Button>
-            </DropdownMenuItem>
-          ))}
+                <div className="flex items-center space-x-3">
+                  <Image
+                    src={product.imageData[0].image}
+                    alt="product"
+                    width={50}
+                    height={50}
+                    className="h-12 w-12 object-cover rounded-md"
+                  />
+                  <div className="flex flex-col ml-4 w-64">
+                    <p>{product.title}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {product.quantity} x {ToRupiah(product.price)}
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant={"destructive"}
+                  size={"icon"}
+                  onClick={() => removeFromCart(product._id)}
+                >
+                  <Trash2 className="h-5 w-5" />
+                </Button>
+              </DropdownMenuItem>
+            ))
+          ) : (
+            <p className="text-sm text-muted-foreground text-center py-4">
+              No item in cart
+            </p>
+          )}
           <DropdownMenuSeparator />
           <DropdownMenuLabel className="font-normal flex justify-between">
             Total <span className="font-bold">{ToRupiah(totalPrice)}</span>

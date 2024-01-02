@@ -19,8 +19,18 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
+import citiesDummy from "@/constants/mocks/city";
+import provincesDummy from "@/constants/mocks/province";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -40,23 +50,50 @@ const addressFormSchema = z.object({
 });
 
 export type AddressFormValues = z.infer<typeof addressFormSchema>;
+export type ProvincesResponse = {
+  rajaongkir: {
+    query: [];
+    status: {
+      code: number;
+      description: string;
+    };
+    results: IProvince[];
+  };
+};
+export type CitiesResponse = {
+  rajaongkir: {
+    query: [];
+    status: {
+      code: number;
+      description: string;
+    };
+    results: ICity[];
+  };
+};
 
 export const AddressForm = ({
   address,
+  session,
   trigger,
   type,
   onSubmit,
   submitting,
 }: {
   address?: AddressFormValues;
+  session: any;
   trigger: any;
   type: string;
   onSubmit: (values: AddressFormValues) => void;
   submitting: boolean;
 }) => {
+  const [provinces, setProvinces] = useState<IProvince[]>();
+  const [cities, setCities] = useState<ICity[]>(citiesDummy.rajaongkir.results);
+  const [selectedProvince, setSelectedProvince] = useState<string>("");
+
   const defaultValues = {
+    creator: session?.user?.id,
     address_name: address?.address_name || "",
-    recipient: address?.recipient || "",
+    recipient: session?.user?.name,
     city: address?.city || "",
     province: address?.province || "",
     phone: address?.phone || "",
@@ -73,17 +110,51 @@ export const AddressForm = ({
     mode: "onChange",
   });
 
-  // const [submitting, setSubmitting] = useState(false);
-  // const createAddress = async (data: AddressFormValues) => {
-  //   setSubmitting(true);
-  //   try {
-  //     console.log({ ...data, userId: session?.user?.id });
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
+  useEffect(() => {
+    const fetchProvinces = async () => {
+      try {
+        const response = await fetch(
+          // "https://api.rajaongkir.com/starter/province?key=7abde95ef7cb7b9f3cd2770685085807"
+          "/api/address/province",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            cache: "no-store",
+          }
+        );
+        if (!response.ok) {
+          throw new Error(`Failed to fetch provinces: ${response.statusText}`);
+        }
+        const data: ProvincesResponse = await response.json();
+        setProvinces(data.rajaongkir.results);
+      } catch (error) {
+        console.log("Error fetching provinces:", error);
+      }
+    };
+
+    fetchProvinces();
+  }, []);
+
+  useEffect(() => {
+    const fetchCities = async (provinceId: string) => {
+      try {
+        const response = await fetch(
+          // `https://api.rajaongkir.com/starter/city?key=7abde95ef7cb7b9f3cd2770685085807&province=${provinceId}`
+          `/api/address/city?province=${provinceId}`
+        );
+        const data: CitiesResponse = await response.json();
+        setCities(data.rajaongkir.results);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    if (selectedProvince !== "") {
+      fetchCities(selectedProvince);
+    }
+  }, [selectedProvince]);
 
   return (
     <Dialog>
@@ -123,26 +194,60 @@ export const AddressForm = ({
             />
             <FormField
               control={form.control}
-              name="city"
+              name="province"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>City</FormLabel>
-                  <FormControl>
-                    <Input placeholder="City" {...field} />
-                  </FormControl>
+                  <FormLabel>Province</FormLabel>
+                  <Select
+                    onValueChange={(value) => {
+                      setSelectedProvince(value);
+                      field.onChange(value);
+                    }}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select province" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {provinces?.map((province) => (
+                        <SelectItem
+                          key={province.province_id}
+                          value={province.province_id}
+                        >
+                          {province.province}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}
             />
             <FormField
               control={form.control}
-              name="province"
+              name="city"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Province</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Province" {...field} />
-                  </FormControl>
+                  <FormLabel>City</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select city" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {cities?.map((city) => (
+                        <SelectItem key={city.city_id} value={city.city_id}>
+                          {city.type} {city.city_name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

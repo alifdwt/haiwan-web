@@ -10,6 +10,7 @@ import {
 } from "../ui/accordion";
 import { ProductSwiperJS } from "./product-swiper";
 import { AddToCart } from "./add-to-cart";
+import { ProductResponse } from "../homepage/trending";
 
 type DetailProductPageProps = {
   params: {
@@ -32,24 +33,38 @@ async function getData(id: string) {
 
 const DetailProductPage = async (props: DetailProductPageProps) => {
   const { params } = props;
-  const Product = await getData(params.slug[1]);
+  const Product: ProductResponse = await getData(params.slug[1]);
   const dummyStar = Math.floor(Math.random() * 5) + 1;
 
   return (
-    <div className="max-w-screen-xl mx-auto mb-5">
-      <div className="w-full flex gap-2 my-4">
+    <div className="max-w-screen-xl mx-auto mb-5 p-2">
+      <div className="w-full md:flex gap-2 my-4 hidden">
         <Link href="/" className="text-primary">
-          Haiwan
+          Home
         </Link>
         <p>&gt;</p>
-        <Link href={`/p/${params.slug[0]}`} className="text-primary">
-          {params.slug[0]}
+        <Link
+          href={`/category/${Product.data.subcategory.category.name
+            .split(" ")
+            .join("-")}`}
+          className="text-primary capitalize"
+        >
+          {Product.data.subcategory.category.name}
+        </Link>
+        <p>&gt;</p>
+        <Link
+          href={`/category/${Product.data.subcategory.category.name
+            .split(" ")
+            .join("-")}/${Product.data.subcategory.name.split(" ").join("-")}`}
+          className="text-primary"
+        >
+          {Product.data.subcategory.name}
         </Link>
         <p>&gt;</p>
         <p>{Product.data.title}</p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_.75fr]">
-        <div className="col-span-1 mx-auto">
+        <div className="col-span-1 mx-auto md:w-[500px]">
           <ProductSwiperJS
             images={Product.data.imageData.map((image: any) => image.image)}
           />
@@ -102,11 +117,15 @@ const DetailProductPage = async (props: DetailProductPageProps) => {
                   <tbody>
                     <tr>
                       <td className="text-left">Category</td>
-                      <td className="text-left">{Product.data.category}</td>
+                      <td className="text-left">
+                        {Product.data.subcategory.category.name}
+                      </td>
                     </tr>
                     <tr>
                       <td className="text-left">Stock</td>
-                      <td className="text-left">{Product.data.stock}</td>
+                      <td className="text-left">
+                        {Math.floor(Math.random() * 100)}
+                      </td>
                     </tr>
                   </tbody>
                 </table>

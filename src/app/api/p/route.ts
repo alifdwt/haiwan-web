@@ -9,27 +9,51 @@ export async function GET(request: NextRequest) {
 
   try {
     await connectMongoDB();
+
+    let products;
     if (limit) {
-      const products = await Product.find()
+      products = await Product.find()
         .populate("creator")
+        .populate({
+          path: "subcategory",
+          select: ["name", "category"],
+          populate: {
+            path: "category",
+            select: "name", // Memilih hanya nama kategori
+          },
+        })
         .limit(parseInt(limit));
+    } else if (creator) {
+      products = await Product.find({ creator: creator })
+        .populate("creator")
+        .populate({
+          path: "subcategory",
+          select: ["name", "category"],
+          populate: {
+            path: "category",
+            select: "name", // Memilih hanya nama kategori
+          },
+        });
+    } else {
+      products = await Product.find()
+        .populate("creator")
+        .populate({
+          path: "subcategory",
+          select: ["name", "category"],
+          populate: {
+            path: "category",
+            select: "name", // Memilih hanya nama kategori
+          },
+        });
+    }
+
+    if (!products || products.length === 0) {
       return NextResponse.json({
-        status: 200,
-        message: "Success",
-        data: products,
+        status: 404,
+        message: "Products not found",
       });
     }
-    if (creator) {
-      const products = await Product.find({ creator: creator }).populate(
-        "creator"
-      );
-      return NextResponse.json({
-        status: 200,
-        message: "Success",
-        data: products,
-      });
-    }
-    const products = await Product.find().populate("creator");
+
     return NextResponse.json({
       status: 200,
       message: "Success",
@@ -38,7 +62,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     return NextResponse.json({
       status: 500,
-      message: error,
+      message: error || "Internal Server Error",
     });
   }
 }

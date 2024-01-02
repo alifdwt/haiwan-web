@@ -20,7 +20,7 @@ export default function AddressPage() {
       setFetching(true);
       try {
         const response = await fetch(
-          `/api/address?userId=${session?.user?.id}`
+          `/api/address?creator=${session?.user?.id}`
         );
         const data = await response.json();
         setAddresses(data.data);
@@ -41,7 +41,7 @@ export default function AddressPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...data, userId: session?.user?.id }),
+        body: JSON.stringify({ ...data, creator: session?.user?.id }),
       });
     } catch (error) {
       console.log(error);
@@ -75,6 +75,7 @@ export default function AddressPage() {
           <Button>Search</Button>
         </div>
         <AddressForm
+          session={session}
           trigger={
             <Button>
               <Plus className="mr-2 h-4 w-4" /> Add New Address
@@ -88,11 +89,12 @@ export default function AddressPage() {
       <ul className="mt-5 flex flex-col gap-2">
         {fetching ? (
           <Skeleton className="h-10 w-full" />
-        ) : addresses.length === 0 ? (
+        ) : addresses === undefined ? (
           <p>No address found</p>
         ) : (
           addresses.map((address) => (
             <AddressForm
+              session={session}
               key={address._id}
               address={address}
               type="Edit"
@@ -107,7 +109,7 @@ export default function AddressPage() {
   );
 }
 
-const AddressCard = ({ address }: { address: AddressFormValues }) => {
+const AddressCard = ({ address }: { address: any }) => {
   return (
     <li key={address._id}>
       <div
@@ -129,7 +131,7 @@ const AddressCard = ({ address }: { address: AddressFormValues }) => {
         <p className="font-bold">{address.recipient}</p>
         <p>{address.phone}</p>
         <p>
-          {address.address}, {address.city}, {address.province}{" "}
+          {address.address}, {address.city.name}, {address.province.name}{" "}
           {address.postcode}
         </p>
         {address.note && <p>({address.note})</p>}

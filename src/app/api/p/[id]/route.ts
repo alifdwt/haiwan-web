@@ -8,7 +8,16 @@ export const GET = async (
 ) => {
   try {
     await connectMongoDB();
-    const product = await Product.findById(params.id).populate("creator");
+    const product = await Product.findById(params.id)
+      .populate("creator")
+      .populate({
+        path: "subcategory",
+        select: ["name", "category"],
+        populate: {
+          path: "category",
+          select: "name", // Memilih hanya nama kategori
+        },
+      });
     if (!product) {
       return NextResponse.json({
         status: 404,

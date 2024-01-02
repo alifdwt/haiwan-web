@@ -29,10 +29,9 @@ const productSchema = new mongoose.Schema({
     required: [true, "Description is required"],
     trim: true,
   },
-  category: {
-    type: String,
-    required: [true, "Category is required"],
-    trim: true,
+  subcategory: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Subcategory",
   },
   imageData: [
     {
@@ -40,12 +39,13 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, "Image is required"],
         trim: true,
-      }
-    }
+      },
+    },
   ],
   createdAt: Date,
 });
 
-const Product = mongoose.models.Product || mongoose.model("Product", productSchema);
+const Product =
+  mongoose.models.Product || mongoose.model("Product", productSchema);
 
 export default Product;

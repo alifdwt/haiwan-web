@@ -59,7 +59,10 @@ const columns: ColumnDef<IProduct>[] = [
     accessorKey: "category",
     header: "Category",
     cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("category")}</div>
+      <div className="capitalize">
+        {row.original.subcategory.category.name} &gt;{" "}
+        {row.original.subcategory.name}
+      </div>
     ),
   },
   {
@@ -80,10 +83,17 @@ const columns: ColumnDef<IProduct>[] = [
   },
   {
     accessorKey: "stock",
-    header: "Stock*",
-    cell: ({ row }) => (
-      <div className="capitalize">{Math.floor(Math.random() * 100)}</div>
-    ),
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Stock <ArrowUpDown className="h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => <div className="capitalize">99</div>,
   },
   {
     accessorKey: "active",
